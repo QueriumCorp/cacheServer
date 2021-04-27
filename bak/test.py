@@ -2,11 +2,11 @@
 # test.py
 # Testing and debugging code
 ###############################################################################
-from dotenv import load_dotenv
-load_dotenv()
 import os
 import sys
 import logging
+from dotenv import load_dotenv
+load_dotenv()
 
 def template():
     print("testing: ")
@@ -15,7 +15,8 @@ def template():
 def boolTest():
     print("testing: boolTest")
     settings = {
-        "cachingOn": True if os.environ.get('CACHING_ON').lower()=="true" else False
+        "cachingOn":
+            True if os.environ.get('CACHING_ON').lower()=="true" else False
     }
     print(settings)
 
@@ -32,7 +33,7 @@ def logPrint():
 
 def envVar():
     print("testing: envVar")
-    print(type(os.environ.get('HOST_ID')))
+    print(print(type(os.environ.get('HOST_ID'))))
     sys.exit()
 
 def runTesting():
@@ -150,3 +151,18 @@ def runTesting():
     # sys.exit()
 
     sys.exit()
+
+
+def dotEvn():
+    print(os.environ.get('DIR_ROOT'))
+    print(os.environ.get('HOST_ID'))
+    print(os.environ.get('SLEEPTIME'))
+    print(os.environ.get('DB_HOST'))
+    print(os.environ.get('CACHING_ON'))
+    print(os.environ.get('REDIS_ON'))
+    print(os.environ.get('WOLFRAMSCRIPT'))
+    print(os.environ.get('JOB_LIMIT'))
+
+
+if __name__ == '__main__':
+    dotEvn()
