@@ -1,0 +1,12 @@
+[Unit]
+Description=cache server
+
+[Service]
+Type=simple
+Environment="DISPLAY=:1"
+User=webappuser
+ExecStart=/usr/bin/python3 /usr/local/bin/cacheServer /home/webappuser/evan/repos/cacheServer/config/config_ai03.json
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
