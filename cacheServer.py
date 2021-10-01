@@ -490,7 +490,7 @@ def mkImage(path, scrptDflt="", timeDflt=300):
     args["img"] = fileCacheImg
 
     ## If the cache image isn't present, generate one
-    script = os.path.join(args["dirCommonCore"], conf['scriptMkImg'])
+    script = conf['scriptMkImg']
     if scrptDflt != "":
         script = scrptDflt
     if not os.path.isfile(script):
@@ -631,7 +631,7 @@ def trigger(lock):
         task['img'] = fFileImg
 
         ## Build a fullpath to caching script and run it
-        scriptCaching = os.path.join(pathRepo, conf["scriptCaching"])
+        scriptCaching = conf["scriptCaching"]
         runCaching(scriptCaching, task)
 
     print(os.getpid(), 'ENDING the job')
