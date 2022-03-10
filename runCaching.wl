@@ -62,7 +62,7 @@ $confCacheMma = ImportString[$ScriptCommandLine[[2]], "RawJSON"];
 If[Head[$confCacheMma]=!=Association,
   Exit[6];
 ];
-(*Scan[Print[#, ": ", $confCacheMma[#]]&, Keys[$confCacheMma]];*)
+Scan[Print[#, ": ", $confCacheMma[#]]&, Keys[$confCacheMma]];
 
 (*** Verify the directories exist ***)
 If[!DirectoryQ[$confCacheMma["dirCommonCore"]],
