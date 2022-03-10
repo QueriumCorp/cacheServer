@@ -53,6 +53,18 @@ runCaching.wl expects a string of JSON as an argument and the following fields:
 * Run the script on Evan's mac:
   /Applications/Mathematica.app/Contents/MacOS/WolframScript -script /Users/evan/Documents/work/querium/coding/mma/CommonCore/cronjob/cacheServer/runCaching.wl '{"dirCommonCore": "/tmp/stepwise/28746af9688a13aca6084ba8a1833b9f5a682601/CommonCore", "img": "/tmp/stepwise/28746af9688a13aca6084ba8a1833b9f5a682601/images/cacheImg.mx", "loadFromImgOn": true}'
 *******************************************************************************)
+(*** Support ***)
+fixPolicy[policy_]:= "$A1$";
+
+fixPolicy[policy_String]:= Module[
+  {cleaned, rslt},
+  cleaned = StringTrim[StringReplace[policy, "$" -> ""]];
+  If[cleaned==="", Return["$A1$"]];
+
+  StringJoin[{"$", cleaned, "$"}]
+];
+
+(*** MAIN ***)
 Print[$ProcessID, " - - - - - - - - - - - - - - - - - - - - - - - - - "];
 Print[$ProcessID, " START: caching: ", DateString[]];
 (*Print["Print[$CommandLine]: ", $ScriptCommandLine];*)
@@ -62,7 +74,7 @@ $confCacheMma = ImportString[$ScriptCommandLine[[2]], "RawJSON"];
 If[Head[$confCacheMma]=!=Association,
   Exit[6];
 ];
-Scan[Print[#, ": ", $confCacheMma[#]]&, Keys[$confCacheMma]];
+(* Scan[Print[#, ": ", $confCacheMma[#]]&, Keys[$confCacheMma]]; *)
 
 (*** Verify the directories exist ***)
 If[!DirectoryQ[$confCacheMma["dirCommonCore"]],
