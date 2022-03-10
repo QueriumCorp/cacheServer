@@ -76,6 +76,9 @@ If[Head[$confCacheMma]=!=Association,
 ];
 (* Scan[Print[#, ": ", $confCacheMma[#]]&, Keys[$confCacheMma]]; *)
 
+(*** Fix the policy string ***)
+$confCacheMma["policies"] = fixPolicy[$confCacheMma["policies"]];
+
 (*** Verify the directories exist ***)
 If[!DirectoryQ[$confCacheMma["dirCommonCore"]],
   Print[$ProcessID, " Invalid path to dirCommonCore"];
