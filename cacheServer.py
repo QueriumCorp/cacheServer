@@ -40,7 +40,8 @@ import shutil
 # Global Variables
 ###############################################################################
 # CMDLENGTH = 4
-CMDLENGTH = 2
+# CMDLENGTH = 2
+CMDLENGTH = 7
 # CACHESCRIPT = 'runPrecompCache.m'
 # CACHESCRIPT = 'runCaching.m'
 CACHESCRIPT = 'runCaching.wl'
@@ -97,10 +98,10 @@ def killItQ(args):
 
     ## if pid is not a caching process, return False
     pro = psutil.Process(args[1])
-    if len(pro.cmdline())!=CMDLENGTH or CACHESCRIPT not in pro.cmdline():
+    if len(pro.cmdline())!=CMDLENGTH or CACHESCRIPT not in ' '.join(pro.cmdline()):
         print(args[0], args[1], "killItQ - doesn't fit the description")
         print(CMDLENGTH, len(pro.cmdline()))
-        print(CACHESCRIPT, pro.cmdline())
+        print(CACHESCRIPT, ' '.join(pro.cmdline()))
         return(False)
 
     ## if a caching process has been running within limitMmaTime, return False
