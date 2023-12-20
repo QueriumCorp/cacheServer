@@ -5,7 +5,8 @@ Description=cache server
 Type=simple
 Environment="DISPLAY=:1"
 User=webappuser
-ExecStart=/usr/bin/python3 /usr/local/bin/cacheServer /home/webappuser/evan/repos/cacheServer/config/config_ai00.json
+WorkingDirectory=/home/webappuser/evan/repos/cacheServer
+ExecStart=/home/webappuser/evan/repos/cacheServer/.venv/bin/python /usr/local/bin/cacheServer /home/webappuser/evan/repos/cacheServer/config/config_ai00.json
 Restart=always
 
 [Install]
